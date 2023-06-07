@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/yanzay/tbot/v2"
@@ -14,7 +15,7 @@ type application struct {
 var (
 	app   application
 	bot   *tbot.Server
-	// token string
+	token string
 )
 
 func main() {
@@ -23,8 +24,8 @@ func main() {
 		log.Println(e)
 	}
 
-	// token = os.Getenv("TOKEN")
-	bot = tbot.New("TOKEN")
+	token = os.Getenv("TOKEN")
+	bot = tbot.New(token)
 	app.client = bot.Client()
 	bot.Use(stat)
 	bot.HandleMessage("", app.GenTxHandler)

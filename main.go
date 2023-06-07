@@ -11,8 +11,8 @@ type application struct {
 }
 
 var (
-	app   application
-	bot   *tbot.Server
+	app application
+	bot *tbot.Server
 	// token string
 )
 
@@ -22,8 +22,8 @@ func main() {
 	// 	log.Println(e)
 	// }
 
-	// token = os.Getenv("TOKEN")
-	bot = tbot.New("TOKEN")
+	// token := os.Getenv("TOKEN")
+	bot = tbot.New("6264917266:AAGqsmswt85iphJVCaKeY3EDYLu5ODsS7Iw")
 	app.client = bot.Client()
 	bot.Use(stat)
 	bot.HandleMessage("", app.GenTxHandler)

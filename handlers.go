@@ -6,6 +6,7 @@ import (
 	"github.com/yanzay/tbot/v2"
 )
 
+// func to call the logic and send a message
 func (a *application) GenTxHandler(m *tbot.Message) {
 	msg, err := GetTokens()
 	if err != nil {

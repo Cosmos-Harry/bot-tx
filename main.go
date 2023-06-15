@@ -12,18 +12,12 @@ type application struct {
 }
 
 var (
-	app   application
-	bot   *tbot.Server
+	app     application
+	bot     *tbot.Server
 	tgtoken string
 )
 
 func main() {
-	// e := godotenv.Load()
-	// if e != nil {
-	// 	log.Println(e)
-	// }
-
-	// token = os.Getenv("TOKEN")
 
 	tgtoken = os.Getenv("TOKEN")
 	bot = tbot.New(tgtoken)

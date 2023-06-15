@@ -17,6 +17,7 @@ func GetTokens() (string, error) {
 	var pri string
 	var new float64
 
+	//Assign both APIs
 	t, err := TxApiCall()
 	if err != nil {
 		fmt.Println(err)
@@ -27,8 +28,9 @@ func GetTokens() (string, error) {
 	}
 
 	price := p.Cosmos.Usd
-	txs := t.TxResponses
 
+	//The logic to call the amount, value and receiver address from coin_received
+	txs := t.TxResponses
 	i := 0
 	for _, u := range txs {
 		if i >= 5 {
@@ -83,29 +85,27 @@ func GetTokens() (string, error) {
 	return fin, err
 }
 
+// Logic to update the bot
 func stat(h tbot.UpdateHandler) tbot.UpdateHandler {
 	return func(u *tbot.Update) {
-		// start := time.Now()
 		h(u)
-		// log.Printf("Handle time: %v", time.Since(start))
 	}
 }
 
+// func to delete characters in a string
 func deleteCharacter(s []byte, char byte) []byte {
 	return bytes.ReplaceAll(s, []byte{char}, []byte{})
 }
 
+// func to return a new string by subtracting characters
 func newCharacter(old, chng string) (new string) {
 
-	// Convert string to byte slice
 	oldBytes := []byte(old)
 
-	// Delete characters from the byte slice
 	for _, char := range chng {
 		oldBytes = deleteCharacter(oldBytes, byte(char))
 	}
 
-	// Convert byte slice back to string
 	newStr := string(oldBytes)
 
 	return newStr

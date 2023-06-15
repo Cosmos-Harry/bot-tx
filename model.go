@@ -2,7 +2,7 @@ package main
 
 import "time"
 
-type Model struct {
+type Tx struct {
 	Txs []struct {
 		Body struct {
 			Messages []struct {
@@ -113,4 +113,10 @@ type Model struct {
 		NextKey interface{} `json:"next_key"`
 		Total   string      `json:"total"`
 	} `json:"pagination"`
+}
+
+type Price struct {
+	Cosmos struct {
+		Usd float64 `json:"usd"`
+	} `json:"cosmos"`
 }

@@ -11,5 +11,5 @@ func (a *application) GenTxHandler(m *tbot.Message) {
 	if err != nil {
 		log.Println(err)
 	}
-	a.client.SendMessage(m.Chat.ID, "Coin_Spent: \n"+"\n"+msg)
+	a.client.SendMessage(m.Chat.ID, "Coin_Spent by AADAO: \n"+"\n"+msg)
 }

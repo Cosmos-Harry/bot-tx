@@ -24,5 +24,6 @@ func main() {
 	app.client = bot.Client()
 	bot.Use(stat)
 	bot.HandleMessage("show aadao", app.GenTxHandler)
+	bot.HandleEditedMessage(app.GenTxHandler)
 	log.Fatal(bot.Start())
 }

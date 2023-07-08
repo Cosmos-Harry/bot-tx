@@ -38,7 +38,7 @@ func GetTokens() (string, error) {
 		}
 		txhash := u.Txhash
 		height := u.Height
-		
+
 		logs := u.Logs
 		for _, v := range logs {
 
@@ -63,7 +63,7 @@ func GetTokens() (string, error) {
 							}
 
 							if x.Key == "receiver" {
-								rcv = fmt.Sprintf(" to :\t%v\n\n", x.Value)
+								rcv = fmt.Sprintf(" to :\t%v", x.Value)
 							}
 						} else {
 							amt = ""

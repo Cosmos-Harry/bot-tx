@@ -36,6 +36,9 @@ func GetTokens() (string, error) {
 		if i >= 5 {
 			break
 		}
+		txhash := u.Txhash
+		height := u.Height
+		
 		logs := u.Logs
 		for _, v := range logs {
 
@@ -72,14 +75,17 @@ func GetTokens() (string, error) {
 				}
 
 			}
-			flopri := price * new
-			pri = strconv.FormatFloat(flopri, 'f', 2, 64)
-
-			res = amt + "ATOM" + " ($" + pri + ")" + rcv
-
-			i++
-			fin += res
 		}
+		mintScan := fmt.Sprintf("https://www.mintscan.io/cosmos/txs/%v?height=%v", txhash, height)
+		shortenedMintScan := shortenString(mintScan, 25)
+		hyperLink := fmt.Sprintf("<a href='%v'>%v</a>", mintScan, shortenedMintScan)
+		flopri := price * new
+		pri = strconv.FormatFloat(flopri, 'f', 2, 64)
+
+		res = amt + "ATOM" + " ($" + pri + ")" + rcv + "\nLink: " + hyperLink + "\n\n"
+
+		i++
+		fin += res
 
 	}
 	return fin, err
@@ -110,4 +116,11 @@ func newCharacter(old, chng string) (new string) {
 
 	return newStr
 
+}
+
+func shortenString(s string, maxLength int) string {
+	if len(s) > maxLength {
+		return s[:maxLength-3] + "..."
+	}
+	return s
 }

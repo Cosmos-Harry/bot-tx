@@ -37,7 +37,7 @@ func main() {
 			if oldMsg != newMsg {
 				bot.Use(stat)
 				chatID := "@atomgov"
-				_, err = app.client.SendMessage(chatID, "Coin_Spent by AADAO: \n"+oldMsg)
+				_, err = app.client.SendMessage(chatID, "Coin_Spent by AADAO:\n\n"+oldMsg, tbot.OptParseModeHTML)
 				if err != nil {
 					log.Println("Error sending message:", err)
 				}

@@ -13,10 +13,11 @@ type application struct {
 }
 
 var (
-	app     application
-	bot     *tbot.Server
-	tgtoken string
-	newMsg  string
+	app       application
+	bot       *tbot.Server
+	tgtoken   string
+	newMsg    string
+	newTxHash string
 )
 
 func main() {
@@ -29,19 +30,20 @@ func main() {
 	go func() {
 		for {
 
-			oldMsg, err := GetTokens()
+			oldMsg, err := GetTokensAuto()
 			if err != nil {
 				log.Println(err)
 			}
 
-			if oldMsg != newMsg {
+			if oldMsg != newMsg && Txhash != newTxHash {
 				bot.Use(stat)
 				chatID := "@atomgov"
-				_, err = app.client.SendMessage(chatID, "Coin_Spent by AADAO:\n\n"+oldMsg, tbot.OptParseModeHTML)
+				_, err = app.client.SendMessage(chatID, "Latest spend by AADAO:\n\n"+oldMsg, tbot.OptParseModeHTML)
 				if err != nil {
 					log.Println("Error sending message:", err)
 				}
 				newMsg = oldMsg
+				newTxHash = Txhash
 			}
 
 			time.Sleep(20 * time.Second)

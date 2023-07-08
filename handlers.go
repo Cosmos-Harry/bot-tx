@@ -8,9 +8,9 @@ import (
 
 // func to call the logic and send a message
 func (a *application) GenTxHandler(m *tbot.Message) {
-	msg, err := GetTokens()
+	msg, err := GetTokensBulk()
 	if err != nil {
 		log.Println(err)
 	}
-	a.client.SendMessage(m.Chat.ID, "Coin_Spent by AADAO:\n\n"+msg, tbot.OptParseModeHTML)
+	a.client.SendMessage(m.Chat.ID, "Latest 5 spends by AADAO:\n\n"+msg, tbot.OptParseModeHTML)
 }
